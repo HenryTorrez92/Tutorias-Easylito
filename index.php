@@ -5,22 +5,22 @@ session_start();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8"> 
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-	
-    <title>inicio sesion</title>    
+
+    <title>inicio sesion</title>
 </head>
-<body>	
+<body>
 	<!--
 	<div class="col-12 bg-warning">
 		<div class="row bg-success"> dude </div>
 	</div>
-	
+
 	-->
 	<div class="container-fluid">
 		<div class="row">
@@ -31,10 +31,10 @@ session_start();
 					</div>
 				</div>
 				<br />
-				
-				<form action="validateLogin.php" method="POST" role="form">					
+
+				<form action="validateLogin.php" method="POST" role="form">
 					<?php
-					
+
 					//*
 					if(isset($_SESSION['message'])){
 						print "<div class='alert alert-warning alert-dismissible fade show'>\n";
@@ -45,7 +45,7 @@ session_start();
 					}
 					//*/
 					?>
-					
+
 					<div class="form-group row">
 						<label class="col-lg-2 col-form-label" for="inputUserName">usuario</label>
 						<div class="col-lg-10">
@@ -60,25 +60,11 @@ session_start();
 					</div>
 					<br />
 					<button type="submit" class="btn btn-primary">Iniciar sesion</button>
-				</form>                  
+				</form>
 				<br />
 			</div>
 		</div>
-	</div>	
-    
+	</div>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
