@@ -27,7 +27,7 @@
 				<div class="dropdown-menu dropdown-menu-right">
 					<a class="dropdown-item" href="#">Mis datos</a>
 					<a class="dropdown-item" href="#">Mis cursos</a>
-					<a class="dropdown-item" href="/Tutorias-Easylito/VisualizarTransmisiones/courseTransmissions.php">Transmisiones</a>
+					<a class="dropdown-item" href="/Tutorias-Easylito/viewTransmissions/courseTransmissions.php">Transmisiones</a>
 					<a class="dropdown-item" href= <?= "/Tutorias-Easylito/logout.php" ?>>Cerrar session</a>
 				</div>
 			</li>

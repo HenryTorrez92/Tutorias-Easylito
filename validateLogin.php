@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+$db_name = "onlinecourses";
+$db_host = "localhost";
+$db_user = "root";
+$db_password = "";
+
 if(!isset($_POST["password"]) || !isset($_POST["username"])){
 	Header("Location: index.php");
 	exit();
@@ -17,7 +22,7 @@ if(!strlen($usename)){
 */
 
 try{
-	$db = new PDO('mysql:host=localhost;dbname=onlinecourses', 'root', '');
+	$db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$stmt = $db->prepare("select ID, nombreUsuario from usuario where nombreUsuario = ? and pass = ?");
 
@@ -26,7 +31,7 @@ try{
 
 	if($result){
 		$_SESSION['userIdentification'] = $result;
-		Header("Location: VisualizarTransmisiones/courseTransmissions.php");
+		Header("Location: viewTransmissions/courseTransmissions.php");
 		exit();
 	}
 	else{
