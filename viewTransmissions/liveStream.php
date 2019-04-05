@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+$db_name = "onlinecourses";
+$db_host = "localhost";
+$db_user = "root";
+$db_password = "";
+
 if(!isset($_SESSION['userIdentification']))
 {
 	Header("Location: ../index.php");
@@ -22,7 +27,7 @@ try{
 
 
 	$result = false;
-	$db = new PDO('mysql:host=localhost;dbname=onlinecourses', 'root', '');
+	$db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$stmt = $db->prepare("select * from transmision where ID=?");
 
@@ -50,10 +55,13 @@ catch(PDOException $e){
 		}
 	</style>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="../resources/bootstrap-4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/chatStyle.css">
+
+	<script src="../resources/jQuery/jquery-3.3.1.min.js"></script>
+	<script src="../resources/bootstrap-4.3.1/js/bootstrap.min.js"></script>
 
 
 	<title>Transmision</title>
@@ -98,30 +106,31 @@ require '../navigationBar.php';
 			</div>
 		</div>
 		<div class="col" id="page-wrap">
-			<div class="container-fluid" id="accordion" style="background-color: #DEE4E7;">
-				<div class="row">
-					<div class="col-12 rounded border border-black" style="border-width: 2px!important; border-color: black!important">
-						<div class="row bg-info rounded-top card-header" style="color: white;">
-							<a class="card-link col-12" data-toggle="collapse" href="#collapseOne"><button type="button" class="btn btn-info col-12"><legend>Chat</legend></button></a>
-						</div>
-						<div class="collapse show" id="collapseOne" data-parent="#accordion">
-							<div class="card-body">
-								<br />
-								<form action="" method="POST" role="form">
-									<div class="row chatBox" id="chatBoxContent">
+			<div class="box box-primary direct-chat direct-chat-primary">
+				<div class="box-header with-border">
+					<h3 class="box-title">Chat</h3>
 
-									</div>
-									<br />
-									<div class="row">
-										<button type="button" class="btn btn-primary" style="height: 50px;" onclick="writeDoc()">Enviar mensaje</button>
-										<textarea class="col" maxlength="100" style="height: 100px;" id="myChatMsg">
-										</textarea>
-									</div>
-								</form>
-								<br />
-							</div>
-						</div>
+					<div class="box-tools pull-right">
+						<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+						</button>
 					</div>
+				</div>
+				<!-- /.box-header -->
+				<div class="box-body">
+				  <!-- Conversations are loaded here -->
+					<div class="direct-chat-messages" id="chatBoxContent">
+					</div>
+				</div>
+
+				<div class="box-footer">
+					<form>
+						<div class="input-group">
+							<input type="text" name="message" placeholder="Escribir mensaje ..." class="form-control" maxlength="100" id="myChatMsg">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-primary btn-flat" onclick="writeDoc()">Enviar</button>
+							</span>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -156,9 +165,10 @@ function writeDoc(){
 	xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhttp.send("data=" + document.getElementById("myChatMsg").value);
 }
-
-
-
 </script>
+
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/adminlte.min.js"></script>
+
 </body>
 </html>
